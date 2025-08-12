@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Shubhi ❤️</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        background: url('https://tse1.mm.bing.net/th/id/OIP.GIP7m8AodRyEIkU33XryOAHaGZ?cb=thfc1&rs=1&pid=ImgDetMain&o=7&rm=3') no-repeat center center/cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Great Vibes', cursive;
+        overflow: hidden;
+        position: relative;
+    }
+    /* Overlay for dreamy effect */
+    body::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(2px);
+        z-index: 0;
+    }
+    /* Floating Hearts */
+    .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: pink;
+        opacity: 0.7;
+        transform: rotate(45deg);
+        animation: float 6s linear infinite;
+        z-index: 1;
+    }
+    .heart::before, .heart::after {
+        content: '';
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: pink;
+        border-radius: 50%;
+    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: -10px; top: 0; }
+    @keyframes float {
+        0% { transform: translateY(0) rotate(45deg); opacity: 0.9; }
+        100% { transform: translateY(-800px) rotate(45deg); opacity: 0; }
+    }
+    /* Portrait Frame */
+    .photo {
+        width: 320px;
+        height: 450px;
+        border-radius: 20px;
+        overflow: hidden;
+        border: 5px solid rgba(255,255,255,0.6);
+        box-shadow: 0 0 40px rgba(255, 192, 203, 0.8);
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(5px);
+        animation: glow 2s infinite alternate;
+        z-index: 2;
+    }
+    .photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    @keyframes glow {
+        from { box-shadow: 0 0 15px rgba(255, 182, 193, 0.6); }
+        to { box-shadow: 0 0 40px rgba(255, 20, 147, 1); }
+    }
+    /* Text */
+    .text {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 15px pink, 0 0 30px red;
+        opacity: 0;
+        animation: fadeIn 2s forwards;
+        z-index: 2;
+    }
+    @keyframes fadeIn {
+        to { opacity: 1; }
+    }
+    /* Buttons */
+    .buttons {
+        margin-top: 20px;
+        display: none;
+        z-index: 2;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        margin: 0 10px;
+        transition: 0.3s;
+    }
+    .yes {
+        background-color: pink;
+        color: white;
+        box-shadow: 0 0 10px pink;
+    }
+    .yes:hover {
+        background-color: deeppink;
+    }
+    .no {
+        background-color: lightgray;
+        color: black;
+    }
+    .no:hover {
+        background-color: darkgray;
+    }
+    /* Heartbreak Animation */
+    .broken-heart {
+        font-size: 100px;
+        position: absolute;
+        animation: shake 0.5s infinite;
+        z-index: 3;
+    }
+    @keyframes shake {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(-5px, 0); }
+        50% { transform: translate(5px, 0); }
+        75% { transform: translate(-5px, 0); }
+        100% { transform: translate(0, 0); }
+    }
+</style>
+</head>
+<body>
+
+<!-- Initial Floating Hearts -->
+<script>
+for (let i = 0; i < 20; i++) {
+    let heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    heart.style.background = `hsl(${Math.random() * 360}, 70%, 80%)`;
+    document.body.appendChild(heart);
+}
+</script>
+
+<!-- Portrait -->
+<div class="photo">
+    <img src="https://i.postimg.cc/mhx3NJzF/Whats-App-Image-2025-08-12-at-12-37-32-51d1558c.jpg" alt="Shubhi">
+</div>
+
+<!-- Love Text -->
+<div id="loveText" class="text"></div>
+
+<!-- Buttons -->
+<div class="buttons" id="buttons">
+    <button class="btn yes" onclick="sendResponse('yes')">💖 Yes</button>
+    <button class="btn no" onclick="sendResponse('no')">😔 No</button>
+</div>
+
+<script>
+    const messages = [
+        "From the moment I met you, my life turned into a beautiful love story…",
+        "Every beat of my heart whispers your name…",
+        "Every smile of yours lights up my whole world…",
+        "Shubhi ❤️",
+        "Will you be mine forever?"
+    ];
+    let index = 0;
+    const textDiv = document.getElementById('loveText');
+    const btns = document.getElementById('buttons');
+
+    function showMessage() {
+        if (index < messages.length) {
+            textDiv.textContent = messages[index];
+            textDiv.style.animation = 'none';
+            textDiv.offsetHeight; // reflow
+            textDiv.style.animation = 'fadeIn 2s forwards';
+            index++;
+            setTimeout(showMessage, 3000);
+        } else {
+            btns.style.display = 'block';
+        }
+    }
+    showMessage();
+
+    function sendResponse(answer) {
+        btns.style.display = 'none';
+        if (answer === 'yes') {
+            textDiv.textContent = "💖 You made me the happiest person alive! 💖";
+            fallHearts();
+        } else {
+            textDiv.textContent = "💔 My heart is broken...";
+            showBrokenHeart();
+        }
+    }
+
+    function fallHearts() {
+        for (let i = 0; i < 100; i++) {
+            let heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = -20 + 'px';
+            heart.style.animationDuration = (Math.random() * 5 + 3) + 's';
+            heart.style.background = `hsl(${Math.random() * 360}, 70%, 80%)`;
+            document.body.appendChild(heart);
+        }
+    }
+
+    function showBrokenHeart() {
+        let bh = document.createElement('div');
+        bh.classList.add('broken-heart');
+        bh.innerHTML = "💔";
+        bh.style.top = "50%";
+        bh.style.left = "50%";
+        bh.style.transform = "translate(-50%, -50%)";
+        document.body.appendChild(bh);
+    }
+</script>
+
+</body>
+</html>
